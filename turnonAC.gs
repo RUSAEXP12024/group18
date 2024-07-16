@@ -1,5 +1,5 @@
 function controlACBasedOnSheet() {
-  var sheetName = "Inquiry";  // The name of your sheet
+  var sheetName = "Inquiry";  
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = spreadsheet.getSheetByName(sheetName);
 
@@ -10,16 +10,16 @@ function controlACBasedOnSheet() {
 
   var lastRow = sheet.getLastRow();
   var headers = sheet.getRange("1:1").getValues()[0];
-  var acStatusIndex = headers.indexOf("エアコン");  // Find the index of the A/C status column
-  var tempIndex = headers.indexOf("設定温度");  // Find the index of the temperature column
+  var acStatusIndex = headers.indexOf("エアコン");  
+  var tempIndex = headers.indexOf("設定温度");  
 
   if (acStatusIndex === -1 || tempIndex === -1) {
     Logger.log("Error: Column names not found.");
     return;
   }
 
-  var acStatus = sheet.getRange(lastRow, acStatusIndex + 1).getValue(); // getRange is 1-based
-  var temperature = sheet.getRange(lastRow, tempIndex + 1).getValue(); // getRange is 1-based
+  var acStatus = sheet.getRange(lastRow, acStatusIndex + 1).getValue(); 
+  var temperature = sheet.getRange(lastRow, tempIndex + 1).getValue(); 
 
   if (!acStatus || !temperature) {
     Logger.log("Error: Missing data in the latest row.");
